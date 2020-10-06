@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nome</th>
+    <th>Despesas</th>
+  </tr>
+  <tr *ngFor="let senador of senadores">
+    <td>{{ senador.id }}</td>
+    <td>{{ senador.nomeSenador }}</td>
+    <td><button (click)="navigateTo(senador.id)">Ver</button></td>
+  </tr>
+</table>

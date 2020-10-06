@@ -1,0 +1,20 @@
+<h1>[{{ despesaSenador.id }}] - [{{ despesaSenador.nomeSenador }}]</h1>
+
+<table>
+  <tr>
+    <th>Tipo</th>
+    <th>Fornecedor</th>
+    <th>Dia</th>
+    <th>Mês</th>
+    <th>Ano</th>
+    <th>Valor</th>
+  </tr>
+  <tr *ngFor="let d of despesaSenador.despesas">
+    <td>{{ d.tipo }}</td>
+    <td>{{ d.fornec }}</td>
+    <td>{{ d.dia }}</td>
+    <td>{{ d.mes }}</td>
+    <td>{{ d.ano }}</td>
+    <td>{{ d.valor }}</td>
+  </tr>
+</table>
