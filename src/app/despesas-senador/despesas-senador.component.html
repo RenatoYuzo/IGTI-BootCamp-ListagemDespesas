@@ -1,20 +1,74 @@
-<h1>[{{ despesaSenador.id }}] - [{{ despesaSenador.nomeSenador }}]</h1>
+<mat-toolbar color="primary">
+  <span
+    >{{ despesaSenador.id }} - {{ despesaSenador.nomeSenador }} -
+    {{ valorTotal1 | number: "1.2-2":"pt" }} -
+    {{ valorTotal2 | number: "1.2-2":"pt" }}</span
+  >
+  <span class="spacer"></span>
+  <button [routerLink]="['/senadores']" mat-raised-button>Senadores</button>
+</mat-toolbar>
 
-<table>
-  <tr>
-    <th>Tipo</th>
-    <th>Fornecedor</th>
-    <th>Dia</th>
-    <th>Mês</th>
-    <th>Ano</th>
-    <th>Valor</th>
-  </tr>
-  <tr *ngFor="let d of despesaSenador.despesas">
-    <td>{{ d.tipo }}</td>
-    <td>{{ d.fornec }}</td>
-    <td>{{ d.dia }}</td>
-    <td>{{ d.mes }}</td>
-    <td>{{ d.ano }}</td>
-    <td>{{ d.valor }}</td>
-  </tr>
+<table mat-table [dataSource]="despesasTotais" class="mat-elevation-z8">
+  <ng-container matColumnDef="nomeDepesa">
+    <th mat-header-cell *matHeaderCellDef>Nome da despesa</th>
+    <td mat-cell *matCellDef="let d">{{ d.nomeDespesa }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="valorTotal">
+    <th mat-header-cell *matHeaderCellDef>Valor total</th>
+    <td mat-cell *matCellDef="let d">
+      {{ d.valorTotal | number: "1.2-2":"pt" }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['nomeDepesa', 'valorTotal']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['nomeDepesa', 'valorTotal']"></tr>
+</table>
+
+<table
+  mat-table
+  [dataSource]="despesaSenador.despesas"
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="tipo">
+    <th mat-header-cell *matHeaderCellDef>Tipo</th>
+    <td mat-cell *matCellDef="let d">{{ d.tipo }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="fornec">
+    <th mat-header-cell *matHeaderCellDef>Fornecedor</th>
+    <td mat-cell *matCellDef="let d">{{ d.fornec }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dia">
+    <th mat-header-cell *matHeaderCellDef>Dia</th>
+    <td mat-cell *matCellDef="let d">{{ d.dia }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="mes">
+    <th mat-header-cell *matHeaderCellDef>Mês</th>
+    <td mat-cell *matCellDef="let d">{{ d.mes }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="ano">
+    <th mat-header-cell *matHeaderCellDef>Ano</th>
+    <td mat-cell *matCellDef="let d">{{ d.ano }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="valor">
+    <th mat-header-cell *matHeaderCellDef>Valor</th>
+    <td mat-cell *matCellDef="let d">{{ d.valor | number: "1.2-2":"pt" }}</td>
+  </ng-container>
+
+  <tr
+    mat-header-row
+    *matHeaderRowDef="['tipo', 'fornec', 'dia', 'mes', 'ano', 'valor']"
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="
+      let row;
+      columns: ['tipo', 'fornec', 'dia', 'mes', 'ano', 'valor']
+    "
+  ></tr>
 </table>

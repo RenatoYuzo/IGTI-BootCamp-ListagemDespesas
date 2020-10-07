@@ -1,12 +1,14 @@
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Nome</th>
-    <th>Despesas</th>
-  </tr>
-  <tr *ngFor="let senador of senadores">
-    <td>{{ senador.id }}</td>
-    <td>{{ senador.nomeSenador }}</td>
-    <td><button (click)="navigateTo(senador.id)">Ver</button></td>
-  </tr>
-</table>
+<mat-toolbar color="primary">
+  <span>Senador</span>
+</mat-toolbar>
+
+<mat-nav-list class="mat-elevation-z8">
+  <mat-list-item *ngFor="let senador of senadores">
+    <a matLine [routerLink]="['/senadores', senador.id]">{{
+      senador.nomeSenador
+    }}</a>
+    <!-- <button mat-icon-button (click)="navigateTo(senador.id)">
+      <mat-icon>delete</mat-icon>
+    </button> -->
+  </mat-list-item>
+</mat-nav-list>
